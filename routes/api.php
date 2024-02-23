@@ -6,7 +6,9 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ebookController;
 use App\Http\Controllers\activityController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AnnouncementController;
 
 
 /*
@@ -40,3 +42,12 @@ Route::resource('books', BookController::class);
 Route::resource('wishlist', WishlistController::class)->middleware('auth:api');
 
 Route::post('/log-activity', [activityController::class, 'logActivity']);
+
+Route::put('/customers/{id}', 'CustomerController@update');
+
+Route::get('/announcements', [AnnouncementController::class, 'index']);
+Route::get('/announcements/{id}', [AnnouncementController::class, 'show']);
+
+Route::post('/complaints', 'ComplaintController@store');
+Route::get('/complaints', 'ComplaintController@index');
+Route::get('/complaints/{id}', 'ComplaintController@show');
